@@ -179,7 +179,7 @@ public class Persoon {
     /**
      * Als het ouderlijk gezin van deze persoon nog onbekend is dan wordt deze
      * persoon een kind van ouderlijkGezin en tevens wordt deze persoon als kind
-     * in dat gezin geregistreerd Als de ouders bij aanroep al bekend zijn,
+     * in dat gezin geregistreerd. Als de ouders bij aanroep al bekend zijn,
      * verandert er niets
      *
      * @param ouderlijkGezin
@@ -187,7 +187,14 @@ public class Persoon {
      */
     boolean setOuders(Gezin ouderlijkGezin) {
         //todo opgave 1
-        return false;
+        if(this.ouderlijkGezin == null){
+            this.ouderlijkGezin = ouderlijkGezin;
+            ouderlijkGezin.breidUitMet(this);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -239,6 +246,7 @@ public class Persoon {
      */
     public Gezin heeftOngehuwdGezinMet(Persoon andereOuder) {
         //todo opgave 1
+        
         return null;
     }
 
@@ -289,7 +297,11 @@ public class Persoon {
      * @return true als persoon op datum gescheiden is, anders false
      */
     public boolean isGescheidenOp(Calendar datum) {
-        //todo opgave 1
+        for(Gezin gezin: alsOuderBetrokkenIn){
+            if(gezin.heeftGescheidenOudersOp(datum)){
+                return true;
+            }
+        }
         return false;
     }
 
