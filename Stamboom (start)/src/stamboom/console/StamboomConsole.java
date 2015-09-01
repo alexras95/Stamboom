@@ -63,7 +63,7 @@ public class StamboomConsole {
         }
 
         String[] vnamen;
-        vnamen = readString("voornamen gescheiden door spatie").split(" ");
+        vnamen = readString("voornamen gescheiden door spatie").split(" ");        
 
         String tvoegsel;
         tvoegsel = readString("tussenvoegsel");

@@ -238,7 +238,29 @@ public class Persoon {
      * null
      */
     public Gezin heeftOngehuwdGezinMet(Persoon andereOuder) {
-        //todo opgave 1
+        //todo opgave 1       
+        // voor elk gezin waarin deze persoon als ouder betrokken in is,
+        // moet je het gezin pakken waar deze ouder en de andereOuder 
+        // de ouders van zijn, als dit zo is moet er gecontroleerd worden of 
+        // deze gescheiden zijn dan returnen
+        for(Gezin g : alsOuderBetrokkenIn)
+        {
+            if((g.getOuder1() == this || g.getOuder2() == this) && (g.getOuder1() == andereOuder || g.getOuder2() == andereOuder))
+            {
+                if(g.isOngehuwd())
+                {
+                    return g;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
         return null;
     }
 
