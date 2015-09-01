@@ -170,6 +170,10 @@ public class Gezin {
      */
     boolean setHuwelijk(Calendar datum) {
         //todo opgave 1
+        if(huwelijksdatum == null || huwelijksdatum.after(datum) || huwelijksdatum.before(datum) && scheidingsdatum.before(datum)){
+            huwelijksdatum = datum;
+            return true;
+        }
         return false;
     }
 
