@@ -37,7 +37,7 @@ public class Persoon {
         char first = Character.toUpperCase(anaam.charAt(0));
         this.achternaam = first + anaam.toLowerCase().substring(1);
         this.nr = persNr;
-        String[] tempvoornamen = null;
+        String[] tempvoornamen = new String[vnamen.length];
         int i = 0;
         for(String s: vnamen)
         {
@@ -111,7 +111,7 @@ public class Persoon {
      */
     public String getNaam() {
         //todo opgave 1
-        String naam = "";
+        String naam;
         if(tussenvoegsel != null && !tussenvoegsel.isEmpty())
         {
             naam = getInitialen() + " " + tussenvoegsel + " " + achternaam;
