@@ -38,6 +38,11 @@ public class Persoon {
         this.achternaam = first + anaam.toLowerCase().substring(1);
         this.nr = persNr;
         this.voornamen = vnamen;
+        for(String s: vnamen)
+        {
+            first = Character.toUpperCase(s.charAt(0));
+            s = first + s.toLowerCase().substring(1);
+        }
         this.tussenvoegsel = tvoegsel.toLowerCase();
         this.gebDat = gebdat;
         first = Character.toUpperCase(gebplaats.charAt(0));
@@ -85,7 +90,12 @@ public class Persoon {
      */
     public String getInitialen() {
         //todo opgave 1
-        return null;
+        String initialen = "";
+        for(String s: voornamen)
+        {
+            initialen = initialen + s.charAt(0) + ".";
+        }
+        return initialen;
     }
 
     /**
@@ -96,7 +106,17 @@ public class Persoon {
      */
     public String getNaam() {
         //todo opgave 1
-        return null;
+        String naam = "";
+        if(tussenvoegsel != null && !tussenvoegsel.isEmpty())
+        {
+            naam = getInitialen() + " " + tussenvoegsel + " " + achternaam;
+        }
+        else
+        {
+            naam = getInitialen() + " " + achternaam;
+        }
+        //naam = getInitialen() + " "
+        return naam;
     }
 
     /**
