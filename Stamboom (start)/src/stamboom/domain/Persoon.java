@@ -33,7 +33,17 @@ public class Persoon {
      */
     Persoon(int persNr, String[] vnamen, String anaam, String tvoegsel,
             Calendar gebdat, String gebplaats, Geslacht g, Gezin ouderlijkGezin) {
-        //todo opgave 1
+        //TODO opgave 1
+        char first = Character.toUpperCase(anaam.charAt(0));
+        this.achternaam = first + anaam.toLowerCase().substring(1);
+        this.nr = persNr;
+        this.voornamen = vnamen;
+        this.tussenvoegsel = tvoegsel.toLowerCase();
+        this.gebDat = gebdat;
+        first = Character.toUpperCase(gebplaats.charAt(0));
+        this.gebPlaats = first + gebplaats.toLowerCase().substring(1);
+        this.ouderlijkGezin = ouderlijkGezin;
+        this.geslacht = g;
         throw new UnsupportedOperationException();
     }
 
