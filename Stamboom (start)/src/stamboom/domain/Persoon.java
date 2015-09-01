@@ -37,12 +37,17 @@ public class Persoon {
         char first = Character.toUpperCase(anaam.charAt(0));
         this.achternaam = first + anaam.toLowerCase().substring(1);
         this.nr = persNr;
-        this.voornamen = vnamen;
+        String[] tempvoornamen = null;
+        int i = 0;
         for(String s: vnamen)
         {
+            String nieuw;
             first = Character.toUpperCase(s.charAt(0));
-            s = first + s.toLowerCase().substring(1);
+            nieuw = first + s.toLowerCase().substring(1);
+            tempvoornamen[i] = nieuw;
+            i++;
         }
+        this.voornamen = tempvoornamen;
         this.tussenvoegsel = tvoegsel.toLowerCase();
         this.gebDat = gebdat;
         first = Character.toUpperCase(gebplaats.charAt(0));
