@@ -185,7 +185,13 @@ public class Gezin {
      */
     public String beschrijving() {
         //todo opgave 1
-        return null;
+        // frank
+        String beschrijving;
+        beschrijving = Integer.toString(this.nr) + " " + this.ouder1.getVoornamen() + " " + this.ouder2.getVoornamen() + " " + huwelijksdatum + "; kinderen: ";
+        for(Persoon k : kinderen){
+            beschrijving += " -" + k.getVoornamen();
+        }
+        return beschrijving;
     }
 
     /**
@@ -241,6 +247,10 @@ public class Gezin {
      */
     public boolean isHuwelijkOp(Calendar datum) {
         //todo opgave 1
+        // frank
+        if(datum.before(huwelijksdatum) || datum.equals(huwelijksdatum)){
+            return true;
+        }
         return false;
     }
 

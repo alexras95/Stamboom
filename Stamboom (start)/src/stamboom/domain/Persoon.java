@@ -246,8 +246,20 @@ public class Persoon {
      */
     public Gezin heeftOngehuwdGezinMet(Persoon andereOuder) {
         //todo opgave 1
-        
-        return null;
+        for(Gezin g : alsOuderBetrokkenIn){
+            if((g.getOuder1() == this || g.getOuder2() == this) && (g.getOuder1() == andereOuder || g.getOuder2() == andereOuder)){
+                if(g.isOngehuwd()){
+                    return g;
+                }
+                else{
+                    return null;
+                }
+            }
+            else{
+                return null;
+            }
+        }
+        return null;        
     }
 
     /**
