@@ -17,7 +17,7 @@ public class Persoon {
     private final Calendar gebDat;
     private final String gebPlaats;
     private Gezin ouderlijkGezin;
-    private final List<Gezin> alsOuderBetrokkenIn;
+    private final ArrayList<Gezin> alsOuderBetrokkenIn;
     private final Geslacht geslacht;
 
     // ********constructoren***********************************
@@ -54,7 +54,8 @@ public class Persoon {
         this.gebPlaats = first + gebplaats.toLowerCase().substring(1);
         this.ouderlijkGezin = ouderlijkGezin;
         this.geslacht = g;
-        throw new UnsupportedOperationException();
+        // frank: onderste zin ben ik niet zeker van
+        this.alsOuderBetrokkenIn = new ArrayList<>();
     }
 
     // ********methoden****************************************

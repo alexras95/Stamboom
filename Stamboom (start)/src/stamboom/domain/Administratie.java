@@ -7,8 +7,8 @@ public class Administratie {
     //************************datavelden*************************************
     private int nextGezinsNr;
     private int nextPersNr;
-    private final List<Persoon> personen;
-    private final List<Gezin> gezinnen;
+    private final ArrayList<Persoon> personen;
+    private final ArrayList<Gezin> gezinnen;
 
     //***********************constructoren***********************************
     /**
@@ -18,8 +18,11 @@ public class Administratie {
      */
     public Administratie() {
         //todo opgave 1
-        this.personen = null;
-        this.gezinnen = null;
+        // frank
+        this.personen = new ArrayList<>();
+        this.gezinnen = new ArrayList<>();
+        nextPersNr = 1;
+        nextGezinsNr = 1;
     }
 
     //**********************methoden****************************************
@@ -66,7 +69,19 @@ public class Administratie {
         }
 
         //todo opgave 1
-        return null;
+        // frank --> nog niet af
+        // controleer of getNaam() hetzelfde is voor elke persoon
+        for(Persoon p : personen){
+            if(p.getGebPlaats().equals(gebplaats) && p.getGebDat().equals(gebdat)){
+                return null;
+            }
+        }
+        
+        Persoon persoon = new Persoon(nextPersNr, vnamen, anaam, tvoegsel, gebdat, gebplaats, geslacht, ouderlijkGezin);
+        nextPersNr++;
+        personen.add(persoon);
+        
+        return persoon;
     }
 
     /**
@@ -208,6 +223,13 @@ public class Administratie {
     public Persoon getPersoon(int nr) {
         //todo opgave 1
         //aanname: er worden geen personen verwijderd
+        // frank
+        for(Persoon p : personen){
+            if(p.getNr() == nr)
+            {
+                return p;
+            }
+        }
         return null;
     }
 
@@ -218,7 +240,14 @@ public class Administratie {
      */
     public ArrayList<Persoon> getPersonenMetAchternaam(String achternaam) {
         //todo opgave 1
-        return null;
+        //frank
+        ArrayList<Persoon> achternaamPersonen = new ArrayList<>();
+        for(Persoon p : personen){
+            if(p.getAchternaam().toUpperCase().equals(achternaam.toUpperCase())){
+                achternaamPersonen.add(p);
+            }
+        }     
+        return achternaamPersonen;
     }
 
     /**
