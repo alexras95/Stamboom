@@ -195,6 +195,32 @@ public class Administratie {
      */
     public Gezin addHuwelijk(Persoon ouder1, Persoon ouder2, Calendar huwdatum) {
         //todo opgave 1
+        //alex
+        boolean isAlGetrouwd = false;
+        
+        if(ouder1.isGetrouwdOp(huwdatum) || ouder2.isGetrouwdOp(huwdatum)){
+            isAlGetrouwd = true;
+        }
+        
+        if(ouder1 == ouder2 || isAlGetrouwd){
+            return null;
+        }
+        for(Gezin g : this.gezinnen){
+            if((ouder1 == g.getOuder1() && ouder2 == g.getOuder2()) || (ouder2 == g.getOuder1() && ouder1 == g.getOuder2())){
+                if(g.setHuwelijk(huwdatum)){
+                    return g;
+                }
+            }
+        }
+        if(addOngehuwdGezin(ouder1,ouder2) != null){
+            for(Gezin g : this.gezinnen){
+                if(g.getNr() == aantalGeregistreerdeGezinnen()){
+                    g.setHuwelijk(huwdatum);
+                    return g;
+                }
+            }
+        }
+        
         return null;
     }
 
@@ -256,7 +282,8 @@ public class Administratie {
      */
     public List<Persoon> getPersonen() {
         // todo opgave 1
-        return null;
+        //alex
+        return this.personen;
     }
 
     /**
@@ -273,6 +300,32 @@ public class Administratie {
     public Persoon getPersoon(String[] vnamen, String anaam, String tvoegsel,
             Calendar gebdat, String gebplaats) {
         //todo opgave 1
+        //alex
+        if(vnamen == null || anaam == null || tvoegsel == null || gebdat == null || gebplaats == null){
+            return null;
+        }
+        char first;
+        String[] tempvoornamen = new String[vnamen.length];
+        int i = 0;
+        for(String s: vnamen)
+        {
+            String nieuw;
+            first = Character.toUpperCase(s.charAt(0));
+            nieuw = first + s.toLowerCase().substring(1);
+            tempvoornamen[i] = nieuw;
+            i++;
+        }
+        StringBuilder init = new StringBuilder();
+        for (String s : tempvoornamen) {
+            init.append(s).append(' ');
+        }
+        for(Persoon p : this.personen){
+            if(p.getVoornamen().equals(init.toString().trim()) && p.getAchternaam().toUpperCase().equals(anaam.toUpperCase())
+                    && p.getTussenvoegsel().toUpperCase().equals(tvoegsel.toUpperCase()) && p.getGebDat() == gebdat
+                    && p.getGebPlaats().toUpperCase().equals(gebplaats.toUpperCase())){
+                return p;                
+            }
+        }
         return null;
     }
 

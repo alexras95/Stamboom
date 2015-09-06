@@ -270,7 +270,8 @@ public class Gezin {
     public boolean heeftGescheidenOudersOp(Calendar datum) {
         //todo opgave 1
         // frank
-        if(datum.equals(this.scheidingsdatum)){
+        // alex: optie erbij gezet dat de scheidingsdatum voor vandaag is i.p.v. alleen precies vandaag
+        if(datum.equals(this.scheidingsdatum) || datum.before(this.huwelijksdatum)){
             return true;
         }
         return false;
