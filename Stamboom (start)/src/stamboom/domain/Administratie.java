@@ -71,8 +71,24 @@ public class Administratie {
         //todo opgave 1
         // frank --> nog niet af
         // controleer of getNaam() hetzelfde is voor elke persoon
+        
+        String naam = "";
+        String initialen = "";
+        for(String s: vnamen)
+        {
+            initialen = initialen + s.charAt(0) + ".";
+        }
+        if(tvoegsel != null && !tvoegsel.isEmpty())
+        {
+            naam = initialen + " " + tvoegsel + " " + anaam;
+        }
+        else
+        {
+            naam = initialen + " " + anaam;
+        }
+        
         for(Persoon p : personen){
-            if(p.getGebPlaats().equals(gebplaats) && p.getGebDat().equals(gebdat)){
+            if(p.getGebPlaats().equals(gebplaats) && p.getGebDat().equals(gebdat) && p.getNaam().equals(naam)){
                 return null;
             }
         }
@@ -196,6 +212,7 @@ public class Administratie {
     public Gezin addHuwelijk(Persoon ouder1, Persoon ouder2, Calendar huwdatum) {
         //todo opgave 1
         //alex
+        //Frank: Bij de error bij het debuggen is ouder2 null
         boolean isAlGetrouwd = false;
         
         if(ouder1.isGetrouwdOp(huwdatum) || ouder2.isGetrouwdOp(huwdatum)){

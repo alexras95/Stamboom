@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="6" failures="3" hostname="LaptopFrank" name="stamboom.domain.DomeinTest" skipped="0" tests="11" time="0.231" timestamp="2015-09-02T20:26:43">
+<testsuite errors="0" failures="8" hostname="LaptopFrank" name="stamboom.domain.DomeinTest" skipped="0" tests="11" time="0.18" timestamp="2015-09-07T20:06:04">
   <properties>
     <property name="netbeans.autoupdate.country" value="NL" />
     <property name="javafx.binarycss" value="false" />
@@ -49,7 +49,7 @@
     <property name="user.name" value="Frank Haver" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner stamboom.domain.DomeinTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\test\results\TEST-stamboom.domain.DomeinTest.xml crashfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junitvmwatcher3528168259609557481.properties propsfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junit4398427980099164682.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner stamboom.domain.DomeinTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\test\results\TEST-stamboom.domain.DomeinTest.xml crashfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junitvmwatcher5083272697307944503.properties propsfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junit469548822899511208.properties" />
     <property name="auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAnnotations" value="WRAP_NEVER" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
@@ -84,7 +84,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\null708511189" />
+    <property name="javac.includesfile.binary" value="C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\null1862918372" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\NetBeans 8.0.2\ide\modules\ext\mysql-connector-java-5.1.23-bin.jar:C:\Program Files\NetBeans 8.0.2\platform\modules\ext\junit-4.10.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/plugin.jar:build/classes" />
@@ -98,6 +98,7 @@
     <property name="libs.junit.classpath" value="C:\Program Files\NetBeans 8.0.2\java\modules\ext\junit-3.8.2.jar" />
     <property name="libs.hibernate4-persistencemodelgen.javadoc" value="" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans 8.0.2\ide\docs\jaxb-api-doc.zip" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="javac.includes.binary" value="C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\test\classes\stamboom\domain\DomeinTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans 8.0.2\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Program Files\NetBeans 8.0.2\java\docs\junit-4.10-sources.jar" />
@@ -319,8 +320,8 @@
     <property name="os.version" value="10.0" />
     <property name="application.args" value="" />
     <property name="manifest.custom.permissions" value="" />
-    <property name="main.class.available" value="true" />
     <property name="sun.awt.enableExtraMouseButtons" value="true" />
+    <property name="main.class.available" value="true" />
     <property name="sun.desktop" value="windows" />
     <property name="libs.hibernate4-persistence.src" value="" />
     <property name="auxiliary.org-netbeans-spi-editor-hints-projects.perProjectHintSettingsFile" value="nbproject/cfg_hints.xml" />
@@ -329,8 +330,8 @@
     <property name="libs.JAXB-ENDORSED.classpath" value="C:\Program Files\NetBeans 8.0.2\ide\modules\ext\jaxb\api\jaxb-api.jar" />
     <property name="nb.internal.action.name" value="run.single" />
     <property name="libs.eclipselink.classpath" value="C:\Program Files\NetBeans 8.0.2\java\modules\ext\eclipselink\eclipselink.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
-    <property name="libs.beans-binding.javadoc" value="C:\Program Files\NetBeans 8.0.2\java\docs\beansbinding-1.2.1-doc.zip" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="libs.beans-binding.javadoc" value="C:\Program Files\NetBeans 8.0.2\java\docs\beansbinding-1.2.1-doc.zip" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="libs.CopyLibs.classpath" value="C:\Program Files\NetBeans 8.0.2\java\ant\extra\org-netbeans-modules-java-j2seproject-copylibstask.jar" />
     <property name="libs.spring-framework300.classpath" value="C:\Program Files\NetBeans 8.0.2\ide\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-aop-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-aspects-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-beans-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-build-src-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-context-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-context-support-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-core-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-expression-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-framework-bom-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-instrument-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-jdbc-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-jms-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-orm-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-oxm-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-struts-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-test-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-tx-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-web-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar;C:\Program Files\NetBeans 8.0.2\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.7.RELEASE.jar" />
@@ -344,8 +345,8 @@
     <property name="libs.junit.src" value="" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="com.javafx.main.Main" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
     <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
@@ -355,51 +356,47 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="javafx.deploy.installpermanently" value="false" />
   </properties>
-  <testcase classname="stamboom.domain.DomeinTest" name="testScheiding" time="0.013">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testScheiding(DomeinTest.java:435)
-</error>
-  </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testAddPersoon" time="0.004">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testAddPersoon(DomeinTest.java:85)
-</error>
-  </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testSetOuders" time="0.002">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testSetOuders(DomeinTest.java:137)
-</error>
-  </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testGetNaam" time="0.001" />
-  <testcase classname="stamboom.domain.DomeinTest" name="testAddHuwelijk" time="0.003">
-    <failure message="ongehuwd gezin trouwt expected:&lt;null&gt; but was:&lt;1 A.G. Dael met J.J. Peters&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: ongehuwd gezin trouwt expected:&lt;null&gt; but was:&lt;1 A.G. Dael met J.J. Peters&gt;
-	at stamboom.domain.DomeinTest.testAddHuwelijk(DomeinTest.java:295)
+  <testcase classname="stamboom.domain.DomeinTest" name="testAddOngehuwdGezin" time="0.031">
+    <failure message="een van de ouders is op dit moment getrouwd" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: een van de ouders is op dit moment getrouwd
+	at stamboom.domain.DomeinTest.testAddOngehuwdGezin(DomeinTest.java:249)
 </failure>
   </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testHeeftGescheidenOuders" time="0.003">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testHeeftGescheidenOuders(DomeinTest.java:461)
-</error>
+  <testcase classname="stamboom.domain.DomeinTest" name="testHeeftGescheidenOuders" time="0.0">
+    <failure message="nog niet getrouwd" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: nog niet getrouwd
+	at stamboom.domain.DomeinTest.testHeeftGescheidenOuders(DomeinTest.java:464)
+</failure>
   </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testBeschrijvingGezin" time="0.002">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testBeschrijvingGezin(DomeinTest.java:165)
-</error>
+  <testcase classname="stamboom.domain.DomeinTest" name="testSetEnIsHuwelijk" time="0.0">
+    <failure message="huwelijksdatum later invoeren onjuist" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: huwelijksdatum later invoeren onjuist
+	at stamboom.domain.DomeinTest.testSetEnIsHuwelijk(DomeinTest.java:415)
+</failure>
   </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testGetPersoonEnPersonen" time="0.001">
+  <testcase classname="stamboom.domain.DomeinTest" name="testBeschrijvingGezin" time="0.0">
+    <failure message="beschrijving gezin onjuist expected:&lt;1 P[.F. Swinkels met T. de Vries]&gt; but was:&lt;1 P[iet Franciscus Teuntje java.util.GregorianCalendar[time=?,areFieldsSet=false,areAllFieldsSet=false,lenient=true,zone=sun.util.calendar.ZoneInfo[id=&quot;Europe/Berlin&quot;,offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=?,YEAR=1970,MONTH=4,WEEK_OF_YEAR=?,WEEK_OF_MONTH=?,DAY_OF_MONTH=23,DAY_OF_YEAR=?,DAY_OF_WEEK=?,DAY_OF_WEEK_IN_MONTH=?,AM_PM=0,HOUR=0,HOUR_OF_DAY=0,MINUTE=0,SECOND=0,MILLISECOND=?,ZONE_OFFSET=?,DST_OFFSET=?]; kinderen: ]&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: beschrijving gezin onjuist expected:&lt;1 P[.F. Swinkels met T. de Vries]&gt; but was:&lt;1 P[iet Franciscus Teuntje java.util.GregorianCalendar[time=?,areFieldsSet=false,areAllFieldsSet=false,lenient=true,zone=sun.util.calendar.ZoneInfo[id=&quot;Europe/Berlin&quot;,offset=3600000,dstSavings=3600000,useDaylight=true,transitions=143,lastRule=java.util.SimpleTimeZone[id=Europe/Berlin,offset=3600000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=2,startMonth=2,startDay=-1,startDayOfWeek=1,startTime=3600000,startTimeMode=2,endMode=2,endMonth=9,endDay=-1,endDayOfWeek=1,endTime=3600000,endTimeMode=2]],firstDayOfWeek=2,minimalDaysInFirstWeek=4,ERA=?,YEAR=1970,MONTH=4,WEEK_OF_YEAR=?,WEEK_OF_MONTH=?,DAY_OF_MONTH=23,DAY_OF_YEAR=?,DAY_OF_WEEK=?,DAY_OF_WEEK_IN_MONTH=?,AM_PM=0,HOUR=0,HOUR_OF_DAY=0,MINUTE=0,SECOND=0,MILLISECOND=?,ZONE_OFFSET=?,DST_OFFSET=?]; kinderen: ]&gt;
+	at stamboom.domain.DomeinTest.testBeschrijvingGezin(DomeinTest.java:164)
+</failure>
+  </testcase>
+  <testcase classname="stamboom.domain.DomeinTest" name="testGetPersoonEnPersonen" time="0.016">
     <failure message="identificatie persoon onjuist expected:&lt;P.F. Swinkels (MAN) 23-4-1950&gt; but was:&lt;null&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: identificatie persoon onjuist expected:&lt;P.F. Swinkels (MAN) 23-4-1950&gt; but was:&lt;null&gt;
 	at stamboom.domain.DomeinTest.testGetPersoonEnPersonen(DomeinTest.java:481)
 </failure>
   </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testGetPersonenMetAchternaam" time="0.001" />
-  <testcase classname="stamboom.domain.DomeinTest" name="testAddOngehuwdGezin" time="0.011">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at stamboom.domain.DomeinTest.testAddOngehuwdGezin(DomeinTest.java:202)
-</error>
+  <testcase classname="stamboom.domain.DomeinTest" name="testGetPersonenMetAchternaam" time="0.0" />
+  <testcase classname="stamboom.domain.DomeinTest" name="testAddHuwelijk" time="0.015">
+    <failure message="gehuwd gezin" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: gehuwd gezin
+	at stamboom.domain.DomeinTest.testAddHuwelijk(DomeinTest.java:308)
+</failure>
   </testcase>
-  <testcase classname="stamboom.domain.DomeinTest" name="testSetEnIsHuwelijk" time="0.002">
-    <failure message="huwelijksdatum later invoeren onjuist" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: huwelijksdatum later invoeren onjuist
-	at stamboom.domain.DomeinTest.testSetEnIsHuwelijk(DomeinTest.java:415)
+  <testcase classname="stamboom.domain.DomeinTest" name="testAddPersoon" time="0.0">
+    <failure message="kind niet bij ouderlijk gezin geregistreerd" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: kind niet bij ouderlijk gezin geregistreerd
+	at stamboom.domain.DomeinTest.testAddPersoon(DomeinTest.java:85)
+</failure>
+  </testcase>
+  <testcase classname="stamboom.domain.DomeinTest" name="testGetNaam" time="0.0" />
+  <testcase classname="stamboom.domain.DomeinTest" name="testSetOuders" time="0.0" />
+  <testcase classname="stamboom.domain.DomeinTest" name="testScheiding" time="0.0">
+    <failure message="wel gescheiden" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: wel gescheiden
+	at stamboom.domain.DomeinTest.testScheiding(DomeinTest.java:452)
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
