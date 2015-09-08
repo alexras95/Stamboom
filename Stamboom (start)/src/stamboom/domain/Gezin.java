@@ -186,12 +186,28 @@ public class Gezin {
     public String beschrijving() {
         //todo opgave 1
         // frank
-        String beschrijving;
-        beschrijving = Integer.toString(this.nr) + " " + this.ouder1.getVoornamen() + " " + this.ouder2.getVoornamen() + " " + huwelijksdatum + "; kinderen: ";
-        for(Persoon k : kinderen){
-            beschrijving += " -" + k.getVoornamen();
+        StringBuilder b = new StringBuilder();
+        b.append(this.nr).append(" ");
+        b.append(ouder1.getNaam());
+        if (ouder2 != null) {
+            b.append(" met ");
+            b.append(ouder2.getNaam());
         }
-        return beschrijving;
+        if (heeftGetrouwdeOudersOp(Calendar.getInstance())) {
+            b.append(" ").append(StringUtilities.datumString(huwelijksdatum));
+        }
+        if(!kinderen.isEmpty())
+        {
+            b.append("; kinderen:");
+            for(Persoon p : kinderen)
+            {
+                String naam = p.getVoornamen().trim();
+                b.append(" -").append(naam);
+            }   
+        }
+            
+    
+        return b.toString();
     }
 
     /**

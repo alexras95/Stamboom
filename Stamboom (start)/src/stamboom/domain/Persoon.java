@@ -40,10 +40,11 @@ public class Persoon {
         String[] tempvoornamen = new String[vnamen.length];
         int i = 0;
         for(String s: vnamen)
-        {
+        {           
+            String tempVnaam = s.replaceAll("\\s", "");
             String nieuw;
-            first = Character.toUpperCase(s.charAt(0));
-            nieuw = first + s.toLowerCase().substring(1);
+            first = Character.toUpperCase(tempVnaam.charAt(0));
+            nieuw = first + tempVnaam.toLowerCase().substring(1);
             tempvoornamen[i] = nieuw;
             i++;
         }

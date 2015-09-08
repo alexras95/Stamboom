@@ -76,6 +76,7 @@ public class Administratie {
         String initialen = "";
         for(String s: vnamen)
         {
+            s = s.replaceAll("\\s","");
             initialen = initialen + s.charAt(0) + ".";
         }
         if(tvoegsel != null && !tvoegsel.isEmpty())
@@ -86,9 +87,11 @@ public class Administratie {
         {
             naam = initialen + " " + anaam;
         }
+        naam = naam.toUpperCase();
         
         for(Persoon p : personen){
-            if(p.getGebPlaats().equals(gebplaats) && p.getGebDat().equals(gebdat) && p.getNaam().equals(naam)){
+            if(p.getGebPlaats().toUpperCase().equals(gebplaats.toUpperCase()) && p.getGebDat().equals(gebdat) && 
+                    p.getNaam().toUpperCase().equals(naam.toUpperCase())){
                 return null;
             }
         }
@@ -96,7 +99,10 @@ public class Administratie {
         Persoon persoon = new Persoon(nextPersNr, vnamen, anaam, tvoegsel, gebdat, gebplaats, geslacht, ouderlijkGezin);
         nextPersNr++;
         personen.add(persoon);
-        
+        if(ouderlijkGezin != null)
+        {
+            ouderlijkGezin.breidUitMet(persoon);
+        }       
         return persoon;
     }
 
