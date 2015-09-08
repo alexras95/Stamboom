@@ -271,7 +271,8 @@ public class Gezin {
         //todo opgave 1
         // frank
         // alex: optie erbij gezet dat de scheidingsdatum voor vandaag is i.p.v. alleen precies vandaag
-        if(datum.equals(this.scheidingsdatum) || datum.before(this.huwelijksdatum)){
+        if(datum.equals(this.scheidingsdatum) || (datum.after(this.scheidingsdatum) && this.scheidingsdatum.after(this.huwelijksdatum))){
+            
             return true;
         }
         return false;
