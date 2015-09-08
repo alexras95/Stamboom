@@ -300,7 +300,8 @@ public class Administratie {
     public List<Persoon> getPersonen() {
         // todo opgave 1
         //alex
-        return this.personen;
+        List<Persoon> unmPersonen = Collections.unmodifiableList(personen);
+        return unmPersonen;
     }
 
     /**
@@ -321,24 +322,14 @@ public class Administratie {
         if(vnamen == null || anaam == null || tvoegsel == null || gebdat == null || gebplaats == null){
             return null;
         }
-        char first;
-        String[] tempvoornamen = new String[vnamen.length];
-        int i = 0;
+        String init = "";
         for(String s: vnamen)
         {
-            String nieuw;
-            first = Character.toUpperCase(s.charAt(0));
-            nieuw = first + s.toLowerCase().substring(1);
-            tempvoornamen[i] = nieuw;
-            i++;
-        }
-        StringBuilder init = new StringBuilder();
-        for (String s : tempvoornamen) {
-            init.append(s).append(' ');
+            init = init.toUpperCase() + s.toUpperCase().charAt(0) + ".";
         }
         for(Persoon p : this.personen){
-            if(p.getVoornamen().equals(init.toString().trim()) && p.getAchternaam().toUpperCase().equals(anaam.toUpperCase())
-                    && p.getTussenvoegsel().toUpperCase().equals(tvoegsel.toUpperCase()) && p.getGebDat() == gebdat
+            if(p.getInitialen().equals(init.trim()) && p.getAchternaam().toUpperCase().equals(anaam.toUpperCase())
+                    && (p.getTussenvoegsel().toUpperCase().equals(tvoegsel.toUpperCase()) || (p.getTussenvoegsel().isEmpty()) && tvoegsel.isEmpty()) && p.getGebDat().equals(gebdat)
                     && p.getGebPlaats().toUpperCase().equals(gebplaats.toUpperCase())){
                 return p;                
             }
