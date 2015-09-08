@@ -170,7 +170,17 @@ public class Gezin {
      */
     boolean setHuwelijk(Calendar datum) {
         //todo opgave 1
-        if(huwelijksdatum == null || huwelijksdatum.after(datum) || huwelijksdatum.before(datum) && scheidingsdatum.before(datum)){
+        int datumyears = datum.get(Calendar.YEAR);
+        int geboortejaar1 = ouder1.getGebDat().get(Calendar.YEAR);
+        int geboortejaar2 = ouder2.getGebDat().get(Calendar.YEAR);
+        if(datumyears - geboortejaar1 <= 18 || datumyears - geboortejaar2 <= 18){
+            return false;
+        }
+        if(huwelijksdatum == null || huwelijksdatum.after(datum)){
+            huwelijksdatum = datum;
+            return true;
+        }
+        if(scheidingsdatum != null && scheidingsdatum.before(datum)){
             huwelijksdatum = datum;
             return true;
         }
@@ -264,8 +274,13 @@ public class Gezin {
     public boolean isHuwelijkOp(Calendar datum) {
         //todo opgave 1
         // frank
-        if(datum.before(huwelijksdatum) || datum.equals(huwelijksdatum)){
-            return true;
+        if(datum.after(huwelijksdatum) || datum.equals(huwelijksdatum)){
+            if(scheidingsdatum == null){
+                return true;
+            }
+            else if(scheidingsdatum.before(huwelijksdatum)){
+                return true;
+            }
         }
         return false;
     }
@@ -287,10 +302,7 @@ public class Gezin {
         //todo opgave 1
         // frank
         // alex: optie erbij gezet dat de scheidingsdatum voor vandaag is i.p.v. alleen precies vandaag
-        if(datum.equals(this.scheidingsdatum) || (datum.after(this.scheidingsdatum) && this.scheidingsdatum.after(this.huwelijksdatum))){
-            
-            return true;
-        }
-        return false;
+        
+        return datum.equals(this.scheidingsdatum) || (datum.after(this.scheidingsdatum) && this.scheidingsdatum.after(this.huwelijksdatum));
     }
 }
