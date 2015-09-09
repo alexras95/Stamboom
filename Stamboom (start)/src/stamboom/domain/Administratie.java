@@ -220,7 +220,12 @@ public class Administratie {
         //alex
         //Frank: Bij de error bij het debuggen is ouder2 null
         boolean isAlGetrouwd = false;
-        
+        int datumyears = huwdatum.get(Calendar.YEAR);
+        int geboortejaar1 = ouder1.getGebDat().get(Calendar.YEAR);
+        int geboortejaar2 = ouder2.getGebDat().get(Calendar.YEAR);
+        if(datumyears - geboortejaar1 <= 18 || datumyears - geboortejaar2 <= 18){
+            return null;
+        }
         if(ouder1.isGetrouwdOp(huwdatum) || ouder2.isGetrouwdOp(huwdatum)){
             isAlGetrouwd = true;
         }

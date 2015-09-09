@@ -278,7 +278,7 @@ public class Gezin {
             if(scheidingsdatum == null){
                 return true;
             }
-            else if(scheidingsdatum.before(huwelijksdatum)){
+            else if(scheidingsdatum.after(datum)){
                 return true;
             }
         }
