@@ -4,6 +4,10 @@ import stamboom.domain.*;
 import java.util.*;
 import stamboom.util.StringUtilities;
 import stamboom.controller.StamboomController;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StamboomConsole {
 
@@ -40,6 +44,12 @@ public class StamboomConsole {
                     break;
                 case SHOW_GEZIN:
                     toonGezinsgegevens();
+                    break;
+                case LOAD_FILE:
+                    laadGegevens();
+                    break;
+                case SAVE_FILE:
+                    slaGegevensOp();
                     break;
             }
             choice = kiesMenuItem();
@@ -176,7 +186,7 @@ public class StamboomConsole {
             System.out.println(m.ordinal() + "\t" + m.getOmschr());
         }
         System.out.println();
-        int maxNr = MenuItem.values().length - 1;
+        int maxNr = MenuItem.values().length -1;
         int nr = readInt("maak een keuze uit 0 t/m " + maxNr);
         while (nr < 0 || nr > maxNr) {
             nr = readInt("maak een keuze uit 0 t/m " + maxNr);
@@ -210,6 +220,30 @@ public class StamboomConsole {
             System.out.println(r.toString());
             nr++;
             r = getAdmin().getGezin(nr);
+        }
+    }
+    
+    void laadGegevens(){
+        // frank: zal hardstikke fout zijn
+        String bestandsNaam = readString("Wat is de bestandsnaam");
+        File bestand = new File(bestandsNaam);
+        try {
+            controller.deserialize(bestand);
+        } catch (IOException ex) {
+            Logger.getLogger(StamboomConsole.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Laden niet gelukt");
+        }
+    }
+    
+    void slaGegevensOp(){
+        // frank: zal hardstikke fout zijn
+        String bestandsNaam = readString("Naar welk bestand wilt u de gegevens opslaan?");
+        File bestand = new File(bestandsNaam);
+        try {
+            controller.deserialize(bestand);
+        } catch (IOException ex) {
+            Logger.getLogger(StamboomConsole.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Opslaan niet gelukt");
         }
     }
 
