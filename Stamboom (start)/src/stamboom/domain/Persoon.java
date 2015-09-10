@@ -19,6 +19,7 @@ public class Persoon implements java.io.Serializable{
     private Gezin ouderlijkGezin;
     private final ArrayList<Gezin> alsOuderBetrokkenIn;
     private final Geslacht geslacht;
+    private int afmeting = 1;
 
     // ********constructoren***********************************
     /**
@@ -330,7 +331,47 @@ public class Persoon implements java.io.Serializable{
      */
     public int afmetingStamboom() {
         //todo opgave 2
-        return -1;
+        BerekenAfmeting(this);
+        return afmeting;
+    }
+    
+    public void BerekenAfmeting(Persoon p)
+    {
+         /*
+        while(persoon heeft ouders)
+        {
+            if(persoonHeeftOuders)
+        {
+            afmeting += 2
+            BerekenAfmeting(ouder1);
+            BerekenAfmeting(ouder2);
+        }
+            else
+        {
+            persoon heeft geen ouders (uit loop)
+        }
+        }
+        */
+        if(p.ouderlijkGezin != null)
+        {
+            if(p.ouderlijkGezin.getOuder1() != null && p.ouderlijkGezin.getOuder2() != null)
+            {
+                afmeting += 2;
+                BerekenAfmeting(p.ouderlijkGezin.getOuder1());
+                BerekenAfmeting(p.ouderlijkGezin.getOuder2());
+            }
+            else if(p.ouderlijkGezin.getOuder1() != null)
+            {
+                afmeting += 1;
+                BerekenAfmeting(p.ouderlijkGezin.getOuder1());
+            }
+            else
+            {
+                afmeting += 1;
+                BerekenAfmeting(p.ouderlijkGezin.getOuder2());
+            }            
+        }
+        
     }
 
     /**
