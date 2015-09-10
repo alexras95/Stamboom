@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import stamboom.util.StringUtilities;
 
-public class Gezin {
+public class Gezin implements java.io.Serializable{
 
     // *********datavelden*************************************
     private final int nr;

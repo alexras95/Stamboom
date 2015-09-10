@@ -5,9 +5,13 @@
 package stamboom.storage;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Properties;
 import stamboom.domain.Administratie;
+import java.io.ObjectOutputStream;
 
 public class SerializationMediator implements IStorageMediator {
 
@@ -32,7 +36,8 @@ public class SerializationMediator implements IStorageMediator {
             throw new RuntimeException("Serialization mediator isn't initialized correctly.");
         }
         
-        // todo opgave 2
+        // todo opgave 2  
+
         return null;
     }
 
@@ -41,9 +46,8 @@ public class SerializationMediator implements IStorageMediator {
         if (!isCorrectlyConfigured()) {
             throw new RuntimeException("Serialization mediator isn't initialized correctly.");
         }
-
-        // todo opgave 2
-  
+        
+        // todo opgave 2   
     }
 
     /**
