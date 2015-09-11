@@ -1,5 +1,6 @@
 package stamboom.domain;
 
+import com.sun.deploy.Environment;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -388,8 +389,41 @@ public class Persoon implements java.io.Serializable{
      */
     void voegJouwStamboomToe(ArrayList<PersoonMetGeneratie> lijst, int g) {
         //todo opgave 2
+        // frank: methode om voor een persoon een lijst 
+        // met zijn stamboom te genereren
+        lijst.add(new PersoonMetGeneratie(this.standaardgegevens(), 0));
+        voegOudersToe(lijst, g, this);
     }
-
+    
+    void voegOudersToe(ArrayList<PersoonMetGeneratie> lijst, int g, Persoon p)
+    {
+        // frank: vervolg op voeg stamboom toe
+        if(p.ouderlijkGezin != null)
+        {
+            g += 1;
+            if(p.ouderlijkGezin.getOuder1() != null && p.ouderlijkGezin.getOuder2() != null)
+            {   
+                lijst.add(new PersoonMetGeneratie(p.ouderlijkGezin.getOuder1().standaardgegevens(), g));
+                voegOudersToe(lijst, g, p.ouderlijkGezin.getOuder1());
+                lijst.add(new PersoonMetGeneratie(p.ouderlijkGezin.getOuder2().standaardgegevens(), g));
+                voegOudersToe(lijst, g, p.ouderlijkGezin.getOuder2());
+            }
+            else if(p.ouderlijkGezin.getOuder1() != null)
+            {
+                lijst.add(new PersoonMetGeneratie(p.ouderlijkGezin.getOuder1().standaardgegevens(), g));
+                voegOudersToe(lijst, g, p.ouderlijkGezin.getOuder1());
+            }
+            else
+            {
+                lijst.add(new PersoonMetGeneratie(p.ouderlijkGezin.getOuder2().standaardgegevens(), g));
+                voegOudersToe(lijst, g, p.ouderlijkGezin.getOuder2());
+            }            
+        }
+        else
+        {
+            g -= 1;
+        }
+    }
     /**
      *
      * @return de stamboomgegevens van deze persoon in de vorm van een String:
@@ -416,7 +450,26 @@ public class Persoon implements java.io.Serializable{
     public String stamboomAlsString() {
         StringBuilder builder = new StringBuilder();
         //todo opgave 2
-
+        // frank: hij lijkt goed te zijn ik snap de unittest niet...
+        ArrayList<PersoonMetGeneratie> stamboom = new ArrayList<>();
+        voegJouwStamboomToe(stamboom, 0);
+        int listCounter = 0;
+        for(PersoonMetGeneratie p : stamboom)
+        {
+            listCounter ++;
+            String spaces = "";
+            for(int i = 0 ; i < p.getGeneratie() ; i++)
+            {
+                spaces += "  ";
+            }
+            builder.append(spaces);
+            builder.append(p.getPersoonsgegevens());
+            if(stamboom.size() != listCounter)
+            {
+                builder.append(System.getProperty("line.separator"));
+            }           
+        }
+        System.out.println(builder.toString());
         return builder.toString();
     }
 }
