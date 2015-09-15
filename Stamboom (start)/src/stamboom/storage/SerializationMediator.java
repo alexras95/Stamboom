@@ -37,8 +37,26 @@ public class SerializationMediator implements IStorageMediator {
         }
         
         // todo opgave 2  
-
-        return null;
+        Administratie admin = null;
+        try
+        {
+           FileInputStream fileIn = new FileInputStream(props.getProperty("file"));
+           ObjectInputStream in = new ObjectInputStream(fileIn);
+           admin = (Administratie)in.readObject();
+           in.close();
+           fileIn.close();
+        }
+        catch(IOException i)
+        {
+           i.printStackTrace();
+           return null;
+        }catch(ClassNotFoundException c)
+        {
+           System.out.println("Administratie niet gevonden");
+           c.printStackTrace();
+           return null;
+        }       
+        return admin;
     }
 
     @Override
@@ -48,6 +66,19 @@ public class SerializationMediator implements IStorageMediator {
         }
         
         // todo opgave 2   
+        try
+      {
+         FileOutputStream fileOut =
+         new FileOutputStream(props.getProperty("file"));
+         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         out.writeObject(admin);
+         out.close();
+         fileOut.close();
+         System.out.printf("data is geserialiseerd in " + props.getProperty("file"));
+      }catch(IOException i)
+      {
+          i.printStackTrace();
+      }
     }
 
     /**

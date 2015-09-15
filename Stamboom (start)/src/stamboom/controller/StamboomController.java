@@ -10,10 +10,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import stamboom.domain.Administratie;
 import stamboom.storage.IStorageMediator;
+import stamboom.storage.SerializationMediator;
 
 public class StamboomController {
 
@@ -48,20 +50,11 @@ public class StamboomController {
      */
     public void serialize(File bestand) throws IOException {
         //todo opgave 2
-        try
-        {
-         FileOutputStream fileOut =
-         new FileOutputStream(bestand);
-         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-         out.writeObject(admin);
-         out.close();
-         fileOut.close();
-         System.out.printf("administratie opgeslagen");
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
+        storageMediator = new SerializationMediator();
+        Properties props = new Properties();
+        props.put("file", bestand.getAbsolutePath());
+        storageMediator.configure(props);
+        storageMediator.save(admin);
     }
 
     /**
@@ -72,25 +65,11 @@ public class StamboomController {
      */
     public void deserialize(File bestand) throws IOException {
         //todo opgave 2        
-        try
-        {
-         FileInputStream fileIn = new FileInputStream(bestand);
-         ObjectInputStream in = new ObjectInputStream(fileIn);
-         admin = (Administratie) in.readObject();
-         in.close();
-         fileIn.close();        
-        }
-        catch(IOException i)
-        {
-            i.printStackTrace();
-            return;
-        }
-        catch(ClassNotFoundException c)
-        {
-           System.out.println("Administratie klasse niet gevoonden");
-           c.printStackTrace();
-           return;
-        }       
+        storageMediator = new SerializationMediator();
+        Properties props = new Properties();
+        props.put("file", bestand.getAbsolutePath());
+        storageMediator.configure(props);
+        storageMediator.load();
     }
     
     // opgave 4
