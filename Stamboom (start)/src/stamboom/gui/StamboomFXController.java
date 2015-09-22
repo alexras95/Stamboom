@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import stamboom.controller.StamboomController;
+import stamboom.domain.Administratie;
 import stamboom.domain.Gezin;
 import stamboom.domain.Persoon;
 import stamboom.util.StringUtilities;
@@ -59,16 +60,20 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     //opgave 4
     private boolean withDatabase;
+    
+    //frank
+    private Administratie admin;
 
-    @Override
+    // frank: @Override
     public void initialize(URL url, ResourceBundle rb) {
+        admin = new Administratie();
         initComboboxes();
         withDatabase = false;
     }
 
     private void initComboboxes() {
         //todo opgave 3 
-
+        cbPersonen.setItems(admin.getObPersonen());
     }
 
     public void selectPersoon(Event evt) {
@@ -94,7 +99,8 @@ public class StamboomFXController extends StamboomController implements Initiali
             }
 
             //todo opgave 3
-            //lvAlsOuderBetrokkenBij.setItems(persoon.getAlsOuderBetrokkenIn());
+            //
+            lvAlsOuderBetrokkenBij.setItems(persoon.getObAlsOuderBetrokkenIn());
         }
     }
 

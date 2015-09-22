@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import stamboom.util.StringUtilities;
 
 public class Persoon implements java.io.Serializable{
@@ -19,6 +21,7 @@ public class Persoon implements java.io.Serializable{
     private final String gebPlaats;
     private Gezin ouderlijkGezin;
     private final ArrayList<Gezin> alsOuderBetrokkenIn;
+    private final ObservableList<Gezin> obAlsOuderBetrokkenIn;
     private final Geslacht geslacht;
     private int afmeting = 1;
 
@@ -59,6 +62,7 @@ public class Persoon implements java.io.Serializable{
         this.geslacht = g;
         // frank: onderste zin ben ik niet zeker van
         this.alsOuderBetrokkenIn = new ArrayList<>();
+        obAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);
     }
 
     // ********methoden****************************************
@@ -179,6 +183,12 @@ public class Persoon implements java.io.Serializable{
     public List<Gezin> getAlsOuderBetrokkenIn() {
         return (List<Gezin>) Collections.unmodifiableList(alsOuderBetrokkenIn);
     }
+    
+    public ObservableList<Gezin> getObAlsOuderBetrokkenIn() {
+        return (ObservableList<Gezin>)FXCollections.unmodifiableObservableList(obAlsOuderBetrokkenIn);
+    }
+    
+    
 
     /**
      * Als het ouderlijk gezin van deze persoon nog onbekend is dan wordt deze

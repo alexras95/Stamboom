@@ -33,9 +33,11 @@
                                                         <ComboBox fx:id="cbPersonen" minHeight="-Infinity" minWidth="-Infinity" onAction="#selectPersoon" prefHeight="25.0" prefWidth="237.0" promptText="kies persoon">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
+                                                                    
                                                                     <String fx:value="Item 1" />
                                                                     <String fx:value="Item 2" />
                                                                     <String fx:value="Item 3" />
+                                                                    
                                                                 </FXCollections>
                                                             </items>
                                                             <BorderPane.margin>
