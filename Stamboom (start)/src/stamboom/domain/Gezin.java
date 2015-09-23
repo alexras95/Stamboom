@@ -14,6 +14,7 @@ public class Gezin implements java.io.Serializable{
     private final Persoon ouder1;
     private final Persoon ouder2;
     private final List<Persoon> kinderen;
+    private ObservableList<Persoon> obKinderen;
     /**
      * kan onbekend zijn (dan is het een ongehuwd gezin):
      */
@@ -75,6 +76,11 @@ public class Gezin implements java.io.Serializable{
      */
     public List<Persoon> getKinderen() {
         return (List<Persoon>) Collections.unmodifiableList(kinderen);
+    }
+    
+    public ObservableList<Persoon> getObKinderen() {
+                obKinderen = FXCollections.observableList(kinderen);
+        return (ObservableList<Persoon>)FXCollections.unmodifiableObservableList(obKinderen);
     }
 
     /**

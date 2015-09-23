@@ -57,7 +57,27 @@ public class StamboomFXController extends StamboomController implements Initiali
     @FXML TextField tfScheidingInvoer;
     @FXML Button btOKGezinInvoer;
     @FXML Button btCancelGezinInvoer;
-
+    
+    // NIEUW PERSOON
+    @FXML TextField tfNieuwPersVoornamen;
+    @FXML TextField tfNieuwPersTsv;
+    @FXML TextField tfNieuwPersAnaam;
+    @FXML TextField tfNieuwPersGebDat;
+    @FXML TextField tfNieuwPersGebPl;
+    @FXML ComboBox cbNieuwPersGeslacht;
+    @FXML ComboBox cbNieuwPersOudGez;
+    @FXML Button btnOkNieuwPersoon;
+    @FXML Button btnCancelNieuwPersoon;
+    
+    // GEZIN
+    @FXML ComboBox cbKiesGezin;
+    @FXML TextField tfGezinNr;
+    @FXML TextField tfSelOuder1;
+    @FXML TextField tfSelOuder2;
+    @FXML TextField tfGezHuwelijk;
+    @FXML TextField tfGezScheding;
+    @FXML ListView lvGezKinderen;
+    
     //opgave 4
     private boolean withDatabase;
     
@@ -149,7 +169,6 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     public void okPersoonInvoer(Event evt) {
         // todo opgave 3
-
     }
 
     public void okGezinInvoer(Event evt) {
@@ -261,7 +280,7 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     private void clearTabGezinInvoer() {
         //todo opgave 3
-    
+        
     }
 
     private void clearTabPersoon() {
