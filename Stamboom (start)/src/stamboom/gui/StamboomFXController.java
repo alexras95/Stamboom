@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import stamboom.controller.StamboomController;
 import stamboom.domain.Administratie;
+import stamboom.domain.Geslacht;
 import stamboom.domain.Gezin;
 import stamboom.domain.Persoon;
 import stamboom.util.StringUtilities;
@@ -81,10 +82,9 @@ public class StamboomFXController extends StamboomController implements Initiali
     //opgave 4
     private boolean withDatabase;
     
-    //frank
     private Administratie admin;
-
-    // frank: @Override
+ 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         admin = new Administratie();
         initComboboxes();
@@ -93,7 +93,8 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     private void initComboboxes() {
         //todo opgave 3 
-        cbPersonen.setItems(admin.getObPersonen());
+        cbPersonen.setItems(admin.getPersonen());
+        cbKiesGezin.setItems(admin.getObGezinnen());
     }
 
     public void selectPersoon(Event evt) {
@@ -164,11 +165,59 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     public void cancelPersoonInvoer(Event evt) {
         // todo opgave 3
-
+        // frank
+        clearTabPersoonInvoer();
     }
 
     public void okPersoonInvoer(Event evt) {
         // todo opgave 3
+        // frank
+        String tussenVoegsel = "";
+        if(!tfNieuwPersVoornamen.getText().equals("")){
+            String[] vnamen = tfNieuwPersVoornamen.getText().split(" ");           
+            if(!tfNieuwPersTsv.getText().equals("")){
+                tussenVoegsel = tfNieuwPersTsv.getText();        
+            }
+            if(!tfNieuwPersAnaam.getText().equals("")){
+                if(!tfNieuwPersGebDat.getText().equals("")){
+                    Calendar calendar = Calendar.getInstance();
+                    String[] gebdat = tfNieuwPersGebDat.getText().split("-");
+                    calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(gebdat[0]));
+                    calendar.set(Calendar.MONTH, Integer.parseInt(gebdat[1]));
+                    calendar.set(Calendar.YEAR, Integer.parseInt(gebdat[2]));
+                    if(!tfNieuwPersGebPl.getText().equals("")){
+                        Geslacht geslacht = (Geslacht) Geslacht.valueOf(cbNieuwPersGeslacht.getSelectionModel().getSelectedItem().toString());
+                        Gezin ouderlijkGezin = (Gezin) cbNieuwPersOudGez.getSelectionModel().getSelectedItem();
+                        if(geslacht != null){          
+                            Persoon p = admin.addPersoon(geslacht, vnamen, tfNieuwPersAnaam.getText(), tussenVoegsel, calendar, tfNieuwPersGebPl.getText(), ouderlijkGezin);
+                            if(p != null){
+                                System.out.println("Persoon succesvol aangemaakt");
+                            }                           
+                        }
+                        else{
+                            showDialog("Warning", "geen geslacht ingevoerd");
+                        }                          
+                    }
+                    else{
+                        showDialog("Warning", "geen geboorteplaats ingevoerd");
+                    }
+
+                }
+                else{
+                    showDialog("Warning", "geen geboortedatum ingevoerd");
+                }
+            }
+            else{
+                showDialog("Warning", "Geen Achternaam Ingevoerd");
+            }            
+        }
+        else{
+            showDialog("Warning", "Geen Voornamen Ingegeven");
+        }
+        
+        clearTabPersoonInvoer();
+        initComboboxes();
+        
     }
 
     public void okGezinInvoer(Event evt) {
@@ -218,7 +267,6 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     public void showStamboom(Event evt) {
         // todo opgave 3
-        
     }
 
     public void createEmptyStamboom(Event evt) {
@@ -274,13 +322,24 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     private void clearTabPersoonInvoer() {
         //todo opgave 3
-        
+        // frank
+        tfNieuwPersVoornamen.clear();
+        tfNieuwPersTsv.clear();
+        tfNieuwPersAnaam.clear();
+        tfNieuwPersGebDat.clear();
+        tfNieuwPersGebPl.clear();
+        cbNieuwPersGeslacht.getSelectionModel().clearSelection();
+        cbNieuwPersOudGez.getSelectionModel().clearSelection();
     }
 
     
     private void clearTabGezinInvoer() {
         //todo opgave 3
-        
+        // frank
+        cbOuder1Invoer.getSelectionModel().clearSelection();
+        cbOuder2Invoer.getSelectionModel().clearSelection();
+        tfHuwelijkInvoer.clear();
+        tfScheidingInvoer.clear();
     }
 
     private void clearTabPersoon() {

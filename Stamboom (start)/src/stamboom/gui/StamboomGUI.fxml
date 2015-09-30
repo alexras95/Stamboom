@@ -188,9 +188,8 @@
                                 <ComboBox fx:id="cbNieuwPersGeslacht" prefWidth="352.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                   <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                      <String fx:value="Item 1" />
-                                      <String fx:value="Item 2" />
-                                      <String fx:value="Item 3" />
+                                      <String fx:value="MAN" />
+                                      <String fx:value="VROUW" />
                                     </FXCollections>
                                   </items>
                                 </ComboBox>
