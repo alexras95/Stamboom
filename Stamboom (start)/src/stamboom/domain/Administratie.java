@@ -356,8 +356,9 @@ public class Administratie implements java.io.Serializable {
      *
      * @return de geregistreerde gezinnen
      */
-    public List<Gezin> getGezinnen() {
-        return null;
+    public ObservableList<Gezin> getGezinnen() {
+        obGezinnen = FXCollections.observableList(gezinnen);
+        return (ObservableList<Gezin>)FXCollections.unmodifiableObservableList(obGezinnen);
     }
     
     public ObservableList<Gezin> getObGezinnen() {

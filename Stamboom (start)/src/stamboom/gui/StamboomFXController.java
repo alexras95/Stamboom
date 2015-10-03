@@ -6,6 +6,7 @@ package stamboom.gui;
 
 import java.net.URL;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -89,12 +90,28 @@ public class StamboomFXController extends StamboomController implements Initiali
         admin = new Administratie();
         initComboboxes();
         withDatabase = false;
+        // frank : testdata
+        Persoon piet = admin.addPersoon(Geslacht.MAN, new String[]{"Piet", "Franciscus"}, "Swinkels",
+                "", new GregorianCalendar(1950, Calendar.APRIL, 23), "ede", null);
+        Persoon teuntje = admin.addPersoon(Geslacht.VROUW, new String[]{"Teuntje"}, "Vries", "de",
+                new GregorianCalendar(1949, Calendar.MAY, 5), "Amersfoort", null);
+        Gezin pietEnTeuntje = admin.addHuwelijk(piet, teuntje, new GregorianCalendar(1970, Calendar.MAY, 23));
+        Persoon henkie = admin.addPersoon(Geslacht.MAN, new String[]{"Henkie", "Franciscus"}, "Swinkels",
+                "", new GregorianCalendar(1980, Calendar.APRIL, 23), "ede", pietEnTeuntje);
+        Persoon henk = admin.addPersoon(Geslacht.MAN, new String[]{"Penk", "Franciscus"}, "Swinkels",
+                "", new GregorianCalendar(1985, Calendar.APRIL, 23), "ede", pietEnTeuntje);
     }
 
     private void initComboboxes() {
         //todo opgave 3 
+        
+
+        
         cbPersonen.setItems(admin.getPersonen());
-        cbKiesGezin.setItems(admin.getObGezinnen());
+        cbKiesGezin.setItems(admin.getGezinnen());
+        cbNieuwPersOudGez.setItems(admin.getGezinnen());
+        cbOuder1Invoer.setItems(admin.getPersonen());
+        cbOuder2Invoer.setItems(admin.getPersonen());
     }
 
     public void selectPersoon(Event evt) {
@@ -135,8 +152,8 @@ public class StamboomFXController extends StamboomController implements Initiali
         }
 
         int nr = Integer.parseInt(tfPersoonNr.getText());
-        Persoon p = getAdministratie().getPersoon(nr);
-        if(getAdministratie().setOuders(p, ouderlijkGezin)){
+        Persoon p = admin.getPersoon(nr);
+        if(admin.setOuders(p, ouderlijkGezin)){
             showDialog("Success", ouderlijkGezin.toString()
                 + " is nu het ouderlijk gezin van " + p.getNaam());
         }
@@ -145,13 +162,32 @@ public class StamboomFXController extends StamboomController implements Initiali
 
     public void selectGezin(Event evt) {
         // todo opgave 3
-
+        // frank
+        Gezin gezin = (Gezin) cbKiesGezin.getSelectionModel().getSelectedItem();
+        showGezin(gezin);
     }
 
     private void showGezin(Gezin gezin) {
         // todo opgave 3
+        // frank
+        if(gezin == null){
+            clearTabGezin();
+        }
+        else{
+            tfGezinNr.setText(String.valueOf(gezin.getNr()));
+            tfSelOuder1.setText(gezin.getOuder1().beschrijving());
+            tfSelOuder2.setText(gezin.getOuder2().beschrijving());
+            tfGezHuwelijk.setText(StringUtilities.datumString(gezin.getHuwelijksdatum()));
+            if(gezin.getScheidingsdatum() != null){
+                tfGezScheding.setText(gezin.getScheidingsdatum().toString());
+            }
+            if(gezin.getObKinderen().size() != 0){
+               lvGezKinderen.setItems(gezin.getObKinderen()); 
+            }
+            
+        }
 
-    }
+    }   
 
     public void setHuwdatum(Event evt) {
         // todo opgave 3
@@ -182,21 +218,25 @@ public class StamboomFXController extends StamboomController implements Initiali
                 if(!tfNieuwPersGebDat.getText().equals("")){
                     Calendar calendar = Calendar.getInstance();
                     String[] gebdat = tfNieuwPersGebDat.getText().split("-");
-                    calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(gebdat[0]));
-                    calendar.set(Calendar.MONTH, Integer.parseInt(gebdat[1]));
-                    calendar.set(Calendar.YEAR, Integer.parseInt(gebdat[2]));
+                    if(gebdat.length == 3){
+                        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(gebdat[0]));
+                        calendar.set(Calendar.MONTH, Integer.parseInt(gebdat[1]));
+                        calendar.set(Calendar.YEAR, Integer.parseInt(gebdat[2]));
+                    }
+                    else{
+                        showDialog("Warning", "geboortedatum bestaat niet uit 3 delen");
+                        return;
+                    }
                     if(!tfNieuwPersGebPl.getText().equals("")){
                         Geslacht geslacht = (Geslacht) Geslacht.valueOf(cbNieuwPersGeslacht.getSelectionModel().getSelectedItem().toString());
-                        Gezin ouderlijkGezin = (Gezin) cbNieuwPersOudGez.getSelectionModel().getSelectedItem();
-                        if(geslacht != null){          
-                            Persoon p = admin.addPersoon(geslacht, vnamen, tfNieuwPersAnaam.getText(), tussenVoegsel, calendar, tfNieuwPersGebPl.getText(), ouderlijkGezin);
-                            if(p != null){
-                                System.out.println("Persoon succesvol aangemaakt");
-                            }                           
-                        }
+                        Gezin ouderlijkGezin = (Gezin) cbNieuwPersOudGez.getSelectionModel().getSelectedItem();                                     
+                        Persoon p = admin.addPersoon(geslacht, vnamen, tfNieuwPersAnaam.getText(), tussenVoegsel, calendar, tfNieuwPersGebPl.getText(), ouderlijkGezin);
+                        if(p != null){
+                            showDialog("Warning", "Persoon succesvol aangemaakt");
+                        }                                                                                                                   
                         else{
                             showDialog("Warning", "geen geslacht ingevoerd");
-                        }                          
+                        }    
                     }
                     else{
                         showDialog("Warning", "geen geboorteplaats ingevoerd");
@@ -236,7 +276,7 @@ public class StamboomFXController extends StamboomController implements Initiali
         }
         Gezin g;
         if (huwdatum != null) {
-            g = getAdministratie().addHuwelijk(ouder1, ouder2, huwdatum);
+            g = admin.addHuwelijk(ouder1, ouder2, huwdatum);
             if (g == null) {
                 showDialog("Warning", "Invoer huwelijk is niet geaccepteerd");
             } else {
@@ -244,14 +284,14 @@ public class StamboomFXController extends StamboomController implements Initiali
                 try {
                     scheidingsdatum = StringUtilities.datum(tfScheidingInvoer.getText());
                     if(scheidingsdatum != null){
-                        getAdministratie().setScheiding(g, scheidingsdatum);
+                        admin.setScheiding(g, scheidingsdatum);
                     }
                 } catch (IllegalArgumentException exc) {
                     showDialog("Warning", "scheidingsdatum :" + exc.getMessage());
                 }
             }
         } else {
-            g = getAdministratie().addOngehuwdGezin(ouder1, ouder2);
+            g = admin.addOngehuwdGezin(ouder1, ouder2);
             if (g == null) {
                 showDialog("Warning", "Invoer ongehuwd gezin is niet geaccepteerd");
             }
@@ -358,7 +398,13 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     private void clearTabGezin() {
         // todo opgave 3
-       
+        // frank
+       tfGezinNr.clear();
+       tfSelOuder1.clear();
+       tfSelOuder2.clear();
+       tfGezHuwelijk.clear();
+       tfGezScheding.clear();
+       lvGezKinderen.setItems(FXCollections.emptyObservableList());
     }
 
     private void showDialog(String type, String message) {

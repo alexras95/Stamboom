@@ -30,7 +30,7 @@
                             </Button>
                           </bottom>
                           <top>
-                            <ComboBox fx:id="cbPersonen" minHeight="-Infinity" minWidth="-Infinity" onAction="#selectPersoon" prefHeight="25.0" prefWidth="237.0" promptText="kies persoon">
+                            <ComboBox fx:id="cbPersonen" minHeight="-1.0" minWidth="-1.0" onAction="#selectPersoon" prefHeight="25.0" prefWidth="237.0" promptText="kies persoon">
                               <items>
                                 <FXCollections fx:factory="observableArrayList">
                                   <String fx:value="Item 1" />
