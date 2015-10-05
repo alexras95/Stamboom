@@ -4,6 +4,10 @@
  */
 package stamboom.gui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -13,6 +17,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import stamboom.controller.StamboomController;
 import stamboom.domain.Administratie;
@@ -83,7 +88,6 @@ public class StamboomFXController extends StamboomController implements Initiali
     //opgave 4
     private boolean withDatabase;
     
-    private Administratie admin;
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -310,25 +314,48 @@ public class StamboomFXController extends StamboomController implements Initiali
     }
 
     public void createEmptyStamboom(Event evt) {
-        this.clearAdministratie();
+        //alex: Stamboom wordt simpelweg opnieuw geïnstantieerd waardoor hij leeg is.
+        admin = new Administratie();
         clearTabs();
         initComboboxes();
     }
 
     
-    public void openStamboom(Event evt) {
+    public void openStamboom(Event evt) throws IOException, ClassNotFoundException {
         // todo opgave 3
+       FileChooser filechooser = new FileChooser();
+       filechooser.setTitle("Open File");
+       File file = filechooser.showOpenDialog(getStage());
+       if(file != null){
+           //admin = this.deserialize(file);
+           FileInputStream fin = new FileInputStream(file.getAbsolutePath());
+           System.out.println(file.getAbsolutePath());
+           try (ObjectInputStream ois = new ObjectInputStream(fin)) {
+               admin = (Administratie) ois.readObject();
+               ois.close();
+           }
+           initComboboxes();
+       }
+        
        
     }
 
     
-    public void saveStamboom(Event evt) {
+    public void saveStamboom(Event evt) throws IOException {
         // todo opgave 3
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Save File");
+        File file = filechooser.showSaveDialog(getStage());
+        if(file != null){
+            this.serialize(file);
+        }
+        
+        
        
     }
 
     
-    public void closeApplication(Event evt) {
+    public void closeApplication(Event evt) throws IOException {
         saveStamboom(evt);
         getStage().close();
     }

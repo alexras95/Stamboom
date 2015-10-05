@@ -1,6 +1,8 @@
 package stamboom.domain;
 
 import com.sun.deploy.Environment;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -21,7 +23,7 @@ public class Persoon implements java.io.Serializable{
     private final String gebPlaats;
     private Gezin ouderlijkGezin;
     private final ArrayList<Gezin> alsOuderBetrokkenIn;
-    private final ObservableList<Gezin> obAlsOuderBetrokkenIn;
+    private transient ObservableList<Gezin> obAlsOuderBetrokkenIn;
     private final Geslacht geslacht;
     private int afmeting = 1;
 
@@ -481,5 +483,9 @@ public class Persoon implements java.io.Serializable{
         }
         System.out.println(builder.toString());
         return builder.toString();
+    }
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        obAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);
     }
 }

@@ -19,7 +19,7 @@ import stamboom.storage.SerializationMediator;
 
 public class StamboomController {
 
-    private Administratie admin;
+    public static Administratie admin;
     private IStorageMediator storageMediator;
 
     /**
@@ -61,15 +61,17 @@ public class StamboomController {
      * administratie wordt vanuit geserialiseerd bestand gevuld
      *
      * @param bestand
+     * @return 
      * @throws IOException
      */
-    public void deserialize(File bestand) throws IOException {
+    public Administratie deserialize(File bestand) throws IOException {
         //todo opgave 2        
         storageMediator = new SerializationMediator();
         Properties props = new Properties();
         props.put("file", bestand.getAbsolutePath());
         storageMediator.configure(props);
         storageMediator.load();
+        return storageMediator.load();
     }
     
     // opgave 4

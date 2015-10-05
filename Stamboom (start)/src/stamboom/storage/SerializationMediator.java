@@ -68,16 +68,12 @@ public class SerializationMediator implements IStorageMediator {
         // todo opgave 2   
         try
       {
-         FileOutputStream fileOut =
-         new FileOutputStream(props.getProperty("file"));
-         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-         out.writeObject(admin);
-         out.close();
-         fileOut.close();
+            try (FileOutputStream fileOut = new FileOutputStream(props.getProperty("file")); ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+                out.writeObject(admin);
+            }
          System.out.printf("data is geserialiseerd in " + props.getProperty("file"));
       }catch(IOException i)
       {
-          i.printStackTrace();
       }
     }
 

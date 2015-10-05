@@ -1,5 +1,7 @@
 package stamboom.domain;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.*;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -14,7 +16,7 @@ public class Gezin implements java.io.Serializable{
     private final Persoon ouder1;
     private final Persoon ouder2;
     private final List<Persoon> kinderen;
-    private ObservableList<Persoon> obKinderen;
+    private transient ObservableList<Persoon> obKinderen;
     /**
      * kan onbekend zijn (dan is het een ongehuwd gezin):
      */
@@ -310,5 +312,10 @@ public class Gezin implements java.io.Serializable{
         // alex: optie erbij gezet dat de scheidingsdatum voor vandaag is i.p.v. alleen precies vandaag
         
         return datum.equals(this.scheidingsdatum) || (datum.after(this.scheidingsdatum) && this.scheidingsdatum.after(this.huwelijksdatum));
+    }
+    
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        obKinderen = FXCollections.observableList(kinderen);
     }
 }
