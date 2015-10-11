@@ -6,24 +6,39 @@ package stamboom.storage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.sql2o.Sql2o;
 import stamboom.domain.Administratie;
 
 public class DatabaseMediator implements IStorageMediator {
 
     private Properties props;
-    private Connection conn;
+    private Sql2o sql2o;
+
+    public DatabaseMediator(Properties props) {
+        this.props = props;
+        try {
+            initConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseMediator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public Administratie load() throws IOException {
         //todo opgave 4
+        
         return null;
     }
 
     @Override
     public void save(Administratie admin) throws IOException {
-        //todo opgave 4     
+        //todo opgave 4
+        
     }
 
     /**
@@ -49,7 +64,7 @@ public class DatabaseMediator implements IStorageMediator {
             this.props = null;
             return false;
         } finally {
-            closeConnection();
+            
         }
     }
 
@@ -80,14 +95,29 @@ public class DatabaseMediator implements IStorageMediator {
 
     private void initConnection() throws SQLException {
         //opgave 4
+        final String url = "jdbc:mysql://localhost:3306/";
+        final String dbName = "dbstamboom";
+        final String userName = "FrankHaver";
+        final String password = "H4verFr4nk";
+        sql2o  = new Sql2o(url+dbName, userName, password);
     }
-
-    private void closeConnection() {
-        try {
-            conn.close();
-            conn = null;
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+    
+    public void InsertPersoon(String achternaam, String tussenvoegsel, Date gbdatum, String gbplaats, String geslacht){
+        String insertSql = 
+                "insert into persoon (achternaam, tussenvoegsel, geboortedatum, geboorteplaats, geslacht, FK_ouders)"
+                + "values(:achternaam, :tussenvoegsel, :gbdatum, :gbplaats, :geslacht, null)";
+        try(org.sql2o.Connection con = sql2o.open()){
+            con.createQuery(insertSql)
+                    .addParameter("achternaam", achternaam)
+                    .addParameter("tussenvoegsel", tussenvoegsel)
+                    .addParameter("gbdatum", gbdatum)
+                    .addParameter("gbplaats", gbplaats)
+                    .addParameter("geslacht", geslacht)
+                    .executeUpdate();
+            System.out.println("Inserten Persoon Gelukt!");
         }
+        catch(Exception ex){
+            System.out.println(ex.toString());
+        }        
     }
 }
