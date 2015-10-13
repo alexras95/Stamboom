@@ -109,6 +109,9 @@ public class StamboomController {
      */
     public void saveToDatabase() throws IOException {
         //todo opgave 4
+        Properties props = new Properties();
+        storageMediator = new DatabaseMediator(props);
+        storageMediator.save(admin);
     }
 
 }

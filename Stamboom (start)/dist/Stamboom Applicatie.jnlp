@@ -8,8 +8,10 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib\junit-4.10.jar" size="253160" download="eager" />
-    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="827921" download="eager" />
+    <jar href="StamboomProject.jar" size="45912" download="eager" />
+    <jar href="lib\junit-4.10.jar" size="281017" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="860451" download="eager" />
+    <jar href="lib\sql2o-1.5.4.jar" size="167898" download="eager" />
   </resources>
 <security>
   <all-permissions/>
