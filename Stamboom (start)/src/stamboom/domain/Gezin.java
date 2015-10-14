@@ -39,7 +39,7 @@ public class Gezin implements java.io.Serializable{
      * @param ouder2 ongelijk aan ouder1, moet al geboren zijn,
      * en mag geen familie van ouder1 zijn.
      */
-    Gezin(int gezinsNr, Persoon ouder1, Persoon ouder2) {
+    public Gezin(int gezinsNr, Persoon ouder1, Persoon ouder2) {
         if (ouder1 == null) {
             throw new RuntimeException("Eerste ouder mag niet null zijn");
         }
@@ -157,7 +157,7 @@ public class Gezin implements java.io.Serializable{
      * @param datum moet na de huwelijksdatum zijn.
      * @return true als scheiding kan worden voltrokken, anders false
      */
-    boolean setScheiding(Calendar datum) {
+    public boolean setScheiding(Calendar datum) {
         if (this.scheidingsdatum == null && huwelijksdatum != null
                 && datum.after(huwelijksdatum) && datum != null) {
             this.scheidingsdatum = datum;
@@ -176,7 +176,7 @@ public class Gezin implements java.io.Serializable{
      * @param datum de huwelijksdatum
      * @return false als huwelijk niet mocht worden voltrokken, anders true
      */
-    boolean setHuwelijk(Calendar datum) {
+    public boolean setHuwelijk(Calendar datum) {
         //todo opgave 1
         int datumyears = datum.get(Calendar.YEAR);
         int geboortejaar1 = ouder1.getGebDat().get(Calendar.YEAR);

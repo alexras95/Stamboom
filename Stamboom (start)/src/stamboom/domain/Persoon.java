@@ -22,7 +22,7 @@ public class Persoon implements java.io.Serializable{
     private final Calendar gebDat;
     private final String gebPlaats;
     private Gezin ouderlijkGezin;
-    private final ArrayList<Gezin> alsOuderBetrokkenIn;
+    private ArrayList<Gezin> alsOuderBetrokkenIn;
     private transient ObservableList<Gezin> obAlsOuderBetrokkenIn;
     private final Geslacht geslacht;
     private int afmeting = 1;
@@ -38,7 +38,7 @@ public class Persoon implements java.io.Serializable{
      * geconverteerd naar kleine letters.
      *
      */
-    Persoon(int persNr, String[] vnamen, String anaam, String tvoegsel,
+    public Persoon(int persNr, String[] vnamen, String anaam, String tvoegsel,
             Calendar gebdat, String gebplaats, Geslacht g, Gezin ouderlijkGezin) {
         //TODO opgave 1
         char first = Character.toUpperCase(anaam.charAt(0));
@@ -63,8 +63,11 @@ public class Persoon implements java.io.Serializable{
         this.ouderlijkGezin = ouderlijkGezin;
         this.geslacht = g;
         // frank: onderste zin ben ik niet zeker van
+
         this.alsOuderBetrokkenIn = new ArrayList<>();
-        obAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);
+        obAlsOuderBetrokkenIn = FXCollections.observableList(alsOuderBetrokkenIn);  
+        
+
     }
 
     // ********methoden****************************************
@@ -201,7 +204,7 @@ public class Persoon implements java.io.Serializable{
      * @param ouderlijkGezin
      * @return of ouderlijk gezin kon worden toegevoegd
      */
-    boolean setOuders(Gezin ouderlijkGezin) {
+    public boolean setOuders(Gezin ouderlijkGezin) {
         //todo opgave 1
         if(this.ouderlijkGezin == null){
             this.ouderlijkGezin = ouderlijkGezin;

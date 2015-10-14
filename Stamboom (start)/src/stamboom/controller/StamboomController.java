@@ -99,6 +99,7 @@ public class StamboomController {
                 props.load(in);
             }
             storageMediator = new DatabaseMediator(props);
+            admin = storageMediator.load();
         }
     }
 
