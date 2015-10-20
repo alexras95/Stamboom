@@ -20,7 +20,6 @@ import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.sql2o.Sql2o;
 import stamboom.domain.Administratie;
 import stamboom.domain.Geslacht;
 import stamboom.domain.Gezin;

@@ -71,7 +71,6 @@ public class StamboomController {
         Properties props = new Properties();
         props.put("file", bestand.getAbsolutePath());
         storageMediator.configure(props);
-        storageMediator.load();
         return storageMediator.load();
     }
     

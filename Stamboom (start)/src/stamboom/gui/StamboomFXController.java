@@ -93,19 +93,19 @@ public class StamboomFXController extends StamboomController implements Initiali
     public void initialize(URL url, ResourceBundle rb) {
         admin = new Administratie();
         initComboboxes();
-        withDatabase = false;
+        withDatabase = true;
         // frank : testdata
-        Persoon piet = admin.addPersoon(Geslacht.MAN, new String[]{"Piet", "Franciscus"}, "Swinkels",
-                "", new GregorianCalendar(1950, Calendar.APRIL, 23), "ede", null);
-        Persoon teuntje = admin.addPersoon(Geslacht.VROUW, new String[]{"Teuntje"}, "Vries", "de",
-                new GregorianCalendar(1949, Calendar.MAY, 5), "Amersfoort", null);
-        Gezin pietEnTeuntje = admin.addHuwelijk(piet, teuntje, new GregorianCalendar(1970, Calendar.MAY, 23));
-        Persoon henkie = admin.addPersoon(Geslacht.MAN, new String[]{"Henkie", "Franciscus"}, "Swinkels",
-                "", new GregorianCalendar(1980, Calendar.APRIL, 23), "ede", pietEnTeuntje);
-        Persoon henk = admin.addPersoon(Geslacht.MAN, new String[]{"Penk", "Franciscus"}, "Swinkels",
-                "", new GregorianCalendar(1985, Calendar.APRIL, 23), "ede", pietEnTeuntje);
-        Persoon veerle = admin.addPersoon(Geslacht.VROUW, new String[]{"Veerle"}, "Slippens",
-                "", new GregorianCalendar(1996, Calendar.MARCH, 13), "Veghel", null);
+//        Persoon piet = admin.addPersoon(Geslacht.MAN, new String[]{"Piet", "Franciscus"}, "Swinkels",
+//                "", new GregorianCalendar(1950, Calendar.APRIL, 23), "ede", null);
+//        Persoon teuntje = admin.addPersoon(Geslacht.VROUW, new String[]{"Teuntje"}, "Vries", "de",
+//                new GregorianCalendar(1949, Calendar.MAY, 5), "Amersfoort", null);
+//        Gezin pietEnTeuntje = admin.addHuwelijk(piet, teuntje, new GregorianCalendar(1970, Calendar.MAY, 23));
+//        Persoon henkie = admin.addPersoon(Geslacht.MAN, new String[]{"Henkie", "Franciscus"}, "Swinkels",
+//                "", new GregorianCalendar(1980, Calendar.APRIL, 23), "ede", pietEnTeuntje);
+//        Persoon henk = admin.addPersoon(Geslacht.MAN, new String[]{"Penk", "Franciscus"}, "Swinkels",
+//                "", new GregorianCalendar(1985, Calendar.APRIL, 23), "ede", pietEnTeuntje);
+//        Persoon veerle = admin.addPersoon(Geslacht.VROUW, new String[]{"Veerle"}, "Slippens",
+//                "", new GregorianCalendar(1996, Calendar.MARCH, 13), "Veghel", null);
         
     }
 
@@ -349,19 +349,27 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     public void openStamboom(Event evt) throws IOException, ClassNotFoundException {
         // todo opgave 3
-       FileChooser filechooser = new FileChooser();
-       filechooser.setTitle("Open File");
-       File file = filechooser.showOpenDialog(getStage());
-       if(file != null){
-           //admin = this.deserialize(file);
-           FileInputStream fin = new FileInputStream(file.getAbsolutePath());
-           System.out.println(file.getAbsolutePath());
-           try (ObjectInputStream ois = new ObjectInputStream(fin)) {
-               admin = (Administratie) ois.readObject();
-               ois.close();
-           }
-           initComboboxes();
-       }
+        if(!withDatabase){
+            FileChooser filechooser = new FileChooser();
+            filechooser.setTitle("Open File");
+            File file = filechooser.showOpenDialog(getStage());
+            if(file != null){
+                //admin = this.deserialize(file);
+                FileInputStream fin = new FileInputStream(file.getAbsolutePath());
+                System.out.println(file.getAbsolutePath());
+                try (ObjectInputStream ois = new ObjectInputStream(fin)) {
+                    admin = (Administratie) ois.readObject();
+                    ois.close();
+                }
+                initComboboxes();
+            }
+        }
+        else{
+            this.loadFromDatabase();
+            admin = this.getAdministratie();
+            initComboboxes();
+        }
+
         
        
     }
@@ -369,15 +377,17 @@ public class StamboomFXController extends StamboomController implements Initiali
     
     public void saveStamboom(Event evt) throws IOException {
         // todo opgave 3
-        FileChooser filechooser = new FileChooser();
-        filechooser.setTitle("Save File");
-        File file = filechooser.showSaveDialog(getStage());
-        if(file != null){
-            this.serialize(file);
+        if(!withDatabase){
+            FileChooser filechooser = new FileChooser();
+            filechooser.setTitle("Save File");
+            File file = filechooser.showSaveDialog(getStage());
+            if(file != null){
+                this.serialize(file);
+            }
         }
-        
-        
-       
+        else{
+            this.saveToDatabase();
+        }
     }
 
     

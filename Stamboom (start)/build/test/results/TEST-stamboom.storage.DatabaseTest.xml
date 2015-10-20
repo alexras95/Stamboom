@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="LaptopFrank" name="stamboom.storage.DatabaseTest" skipped="0" tests="2" time="1.375" timestamp="2015-10-13T09:08:16">
+<testsuite errors="0" failures="0" hostname="LaptopFrank" name="stamboom.storage.DatabaseTest" skipped="0" tests="2" time="1.735" timestamp="2015-10-20T08:46:07">
   <properties>
     <property name="netbeans.autoupdate.country" value="NL" />
     <property name="javafx.binarycss" value="false" />
@@ -49,7 +49,7 @@
     <property name="user.name" value="Frank Haver" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner stamboom.storage.DatabaseTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\test\results\TEST-stamboom.storage.DatabaseTest.xml crashfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junitvmwatcher3160028467862489890.properties propsfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junit3832456713924696498.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner stamboom.storage.DatabaseTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\test\results\TEST-stamboom.storage.DatabaseTest.xml crashfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junitvmwatcher6938898375755052379.properties propsfile=C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\build\junit2745101158475345176.properties" />
     <property name="auxiliary.org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.wrapAnnotations" value="WRAP_NEVER" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
@@ -84,7 +84,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\null1892369035" />
+    <property name="javac.includesfile.binary" value="C:\Users\Frank Haver\Documents\Fontys HBO ICT\S3\C2J31\Stamboom Opdracht\Stamboom\Stamboom (start)\null1008411252" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value="C:\Program Files\NetBeans 8.0.2\ide\modules\ext\mysql-connector-java-5.1.23-bin.jar:C:\Program Files\NetBeans 8.0.2\platform\modules\ext\junit-4.10.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_60\jre/lib/plugin.jar:C:\Users\Frank Haver\Downloads\sql2o-1.5.4\sql2o-1.5.4.jar:build/classes" />
@@ -358,20 +358,15 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="javafx.deploy.installpermanently" value="false" />
   </properties>
-  <testcase classname="stamboom.storage.DatabaseTest" name="testSaveToDatabase" time="1.266" />
-  <testcase classname="stamboom.storage.DatabaseTest" name="testLoadFromDataBase" time="0.0">
-    <failure message="aantal personen in database onjuist expected:&lt;4&gt; but was:&lt;0&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: aantal personen in database onjuist expected:&lt;4&gt; but was:&lt;0&gt;
-	at stamboom.storage.DatabaseTest.testLoadFromDataBase(DatabaseTest.java:92)
-</failure>
-  </testcase>
-  <system-out><![CDATA[Inserten Persoon Gelukt!
-Inserten Persoon Gelukt!
-Inserten Persoon Gelukt!
-Inserten Persoon Gelukt!
-Inserten Gezin Gelukt!
-Inserten Gezin Gelukt!
-Inserten Gezin Gelukt!
-FK ouders gezet van persoon met nr: 3
+  <testcase classname="stamboom.storage.DatabaseTest" name="testSaveToDatabase" time="1.328" />
+  <testcase classname="stamboom.storage.DatabaseTest" name="testLoadFromDataBase" time="0.313" />
+  <system-out><![CDATA[Persoon Aangemaakt met id: 1
+Persoon Aangemaakt met id: 2
+Persoon Aangemaakt met id: 3
+Persoon Aangemaakt met id: 4
+Gezin Aangemaakt met id: 1
+Gezin Aangemaakt met id: 2
+Gezin Aangemaakt met id: 3
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
