@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.*;
 import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 
 public class Administratie implements java.io.Serializable {
@@ -27,6 +28,8 @@ public class Administratie implements java.io.Serializable {
         // frank
         this.personen = new ArrayList<>();
         this.gezinnen = new ArrayList<>();
+        obPersonen = observableList(personen);
+        obGezinnen = observableList(gezinnen);
         nextPersNr = 1;
         nextGezinsNr = 1;
     }
@@ -104,7 +107,7 @@ public class Administratie implements java.io.Serializable {
         
         Persoon persoon = new Persoon(nextPersNr, vnamen, anaam, tvoegsel, gebdat, gebplaats, geslacht, ouderlijkGezin);
         nextPersNr++;
-        personen.add(persoon);
+        obPersonen.add(persoon);
         if(ouderlijkGezin != null)
         {
             ouderlijkGezin.breidUitMet(persoon);
@@ -147,7 +150,7 @@ public class Administratie implements java.io.Serializable {
 
         Gezin gezin = new Gezin(nextGezinsNr, ouder1, ouder2);
         nextGezinsNr++;
-        gezinnen.add(gezin);
+        obGezinnen.add(gezin);
 
         ouder1.wordtOuderIn(gezin);
         if (ouder2 != null) {
@@ -317,7 +320,6 @@ public class Administratie implements java.io.Serializable {
     public ObservableList<Persoon> getPersonen() {
         // todo opgave 1
         //alex      
-        obPersonen = FXCollections.observableList(personen);
         return (ObservableList<Persoon>)FXCollections.unmodifiableObservableList(obPersonen);
     }
 
